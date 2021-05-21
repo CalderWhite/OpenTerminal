@@ -1,0 +1,17 @@
+﻿<Window x:Class="OpenTerminal.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenTerminal"
+        xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1600" Background="Black">
+    <Grid>
+        <ScottPlot:WpfPlot Name="wpfPlot1" HorizontalAlignment="Left" Height="809" VerticalAlignment="Top" Width="1592" Margin="0,60,0,0"/>
+        <local:CustomCaretTextBox x:Name="TickerInput" Margin="0,0,0,833"/>
+        <CheckBox x:Name="AutoTrackCheckbox" IsChecked="True" FlowDirection="RightToLeft" Content="Auto Track Graph" FontFamily="Verdana" HorizontalAlignment="Right" Margin="0,32,10,0" VerticalAlignment="Top" Width="126" Click="CheckBox_Changed" Foreground="White"/>
+        <Button Content="Open New Window" HorizontalAlignment="Left" Margin="1295,27,0,0" FontFamily="Verdana" VerticalAlignment="Top" Width="149" Height="25" Click="Button_Click"/>
+
+    </Grid>
+</Window>

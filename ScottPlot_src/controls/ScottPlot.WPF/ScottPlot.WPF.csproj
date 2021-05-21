@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;net5.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <Configurations>Debug;Release;Release_x64_Standalone</Configurations>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ScottPlot\ScottPlot.csproj" />
+    <None Include="VisualStudioToolsManifest.xml" Pack="true" PackagePath="tools" />
+  </ItemGroup>
+
+</Project>
