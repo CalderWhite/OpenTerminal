@@ -128,6 +128,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BaseConnector.cs" />
     <Compile Include="DummyConnector.cs" />
     <Compile Include="DummyJsonResponse.cs" />
     <Compile Include="Trade.cs" />
@@ -146,7 +147,6 @@
     <Compile Include="CustomCaretTextBox.xaml.cs">
       <DependentUpon>CustomCaretTextBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IExchangeConnector.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

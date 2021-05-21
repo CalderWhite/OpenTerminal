@@ -11,14 +11,11 @@ using System.Threading;
 
 namespace OpenTerminal
 {
-    class DummyConnector : IExchangeConnector
+    class DummyConnector : BaseConnector
     {
-        private string ticker;
-        public DummyConnector(string ticker)
-        {
-            this.ticker = ticker;
-        }
-        public List<Trade> GetLatestTrades()
+        public DummyConnector(string ticker) : base(ticker) { }
+
+        public override List<Trade> GetLatestTrades()
         {
             string url = String.Format("http://127.0.0.1:5000/api/quote/{0}/realtime-trades?limit=100", this.ticker);
             var client = new HttpClient();
@@ -35,6 +32,8 @@ namespace OpenTerminal
                 var row = json.data.rows[i];
                 trades.Add(new Trade(row.nlsPrice, row.nlsShareVolume, row.nlsTime));
             }
+
+            DedupeTrades(trades);
 
             return trades;
         }

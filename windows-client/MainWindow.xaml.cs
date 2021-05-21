@@ -47,7 +47,7 @@ namespace OpenTerminal
         // and the graph looks normal
         private bool doneFirst = false;
 
-        private IExchangeConnector exchangeConnector;
+        private BaseConnector exchangeConnector;
 
         public MainWindow()
         {
@@ -92,14 +92,21 @@ namespace OpenTerminal
                 return;
             }
             List<Trade> newTrades = exchangeConnector.GetLatestTrades();
+            exchangeConnector.DedupeTrades(newTrades);
 
-            double open = newTrades[newTrades.Count - 1].Price;
-            double high = newTrades.Max(trade => trade.Price);
-            double low = newTrades.Min(trade => trade.Price);
-            double close = newTrades[0].Price;
-            DateTime closeTime = newTrades[0].Time;
+            if (newTrades.Count > 0)
+            {
+                double open = newTrades[newTrades.Count - 1].Price;
+                double high = newTrades.Max(trade => trade.Price);
+                double low = newTrades.Min(trade => trade.Price);
+                double close = newTrades[0].Price;
+                DateTime closeTime = newTrades[0].Time;
 
-            GraphNextPoint(open, high, low, close, closeTime);
+                GraphNextPoint(open, high, low, close, closeTime);
+            }
+
+            ++updateCounter;
+            this.tickIndex = updateCounter / 4;
         }
 
         private void GraphNextPoint(double open, double high, double low, double close, DateTime closeTime)
@@ -132,9 +139,6 @@ namespace OpenTerminal
             {
                 wpfPlot1.Plot.AxisAuto();
             }
-
-            ++updateCounter;
-            this.tickIndex = updateCounter / 4;
         }
 
         /**
@@ -186,7 +190,6 @@ namespace OpenTerminal
 
         private void OnTickerChanged()
         {
-            Console.WriteLine("New Ticker!");
             exchangeConnector = new DummyConnector(TickerInput.CustomTextBox.Text);
             ResetGraph();
         }
