@@ -32,8 +32,6 @@ namespace OpenTerminal
                 trades.Add(new Trade(row.nlsPrice, row.nlsShareVolume, row.nlsTime));
             }
 
-            DedupeTrades(trades);
-
             return trades;
         }
     }

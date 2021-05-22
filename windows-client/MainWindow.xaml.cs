@@ -92,7 +92,7 @@ namespace OpenTerminal
                 return;
             }
             List<Trade> newTrades = exchangeConnector.GetLatestTrades();
-            //exchangeConnector.DedupeTrades(newTrades);
+            exchangeConnector.DedupeTrades(newTrades);
 
             if (newTrades.Count > 0)
             {
