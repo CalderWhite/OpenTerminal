@@ -7,11 +7,10 @@
         xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600" Background="Black">
-    <Grid>
-        <ScottPlot:WpfPlot Name="wpfPlot1" HorizontalAlignment="Left" Height="809" VerticalAlignment="Top" Width="1592" Margin="0,60,0,0"/>
-        <local:CustomCaretTextBox x:Name="TickerInput" Margin="0,0,0,833"/>
-        <CheckBox x:Name="AutoTrackCheckbox" IsChecked="True" FlowDirection="RightToLeft" Content="Auto Track Graph" FontFamily="Verdana" HorizontalAlignment="Right" Margin="0,32,10,0" VerticalAlignment="Top" Width="126" Click="CheckBox_Changed" Foreground="White"/>
-        <Button Content="Open New Window" HorizontalAlignment="Left" Margin="1295,27,0,0" FontFamily="Verdana" VerticalAlignment="Top" Width="149" Height="25" Click="Button_Click"/>
+    <DockPanel>
+        <local:CustomCaretTextBox DockPanel.Dock="Top" x:Name="TickerInput" Height="36"/>
+        <CheckBox Margin="0,0,10,0" DockPanel.Dock="Top" x:Name="AutoTrackCheckbox" IsChecked="True" FlowDirection="RightToLeft" Content="Auto Track Graph" FontFamily="Verdana" HorizontalAlignment="Right" VerticalAlignment="Top" Width="126" Click="CheckBox_Changed" Foreground="White" RenderTransformOrigin="-0.397,2.067" Height="18"/>
+        <ScottPlot:WpfPlot DockPanel.Dock="Top" Name="wpfPlot1"/>
 
-    </Grid>
+    </DockPanel>
 </Window>
