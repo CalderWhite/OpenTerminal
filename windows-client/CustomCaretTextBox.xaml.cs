@@ -41,6 +41,7 @@ namespace OpenTerminal
             
         }
 
+        // TODO: deal with: Warning CS0108	'CustomCaretTextBox.Focus()' hides inherited member 'UIElement.Focus()'. Use the new keyword if hiding was intended
         public void Focus()
         {
             this.CustomTextBox.Focus();
