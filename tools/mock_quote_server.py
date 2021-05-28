@@ -29,7 +29,7 @@ def formatDollar(flt):
 def genSym(symbol, limit, time):
     data = {}
     data["symbol"] = symbol
-    data["totalRecords"] = 100
+    data["totalRecords"] = limit
     data["offset"] = 0
     data["limit"] = limit
     data["headers"] = {
@@ -38,17 +38,18 @@ def genSym(symbol, limit, time):
         "nlsShareVolume" : "NLS Share Volume"
     }
 
-    pf = getBase(symbol) * (1 + (random.random()-0.5)/25)
-    setBase(symbol, pf)
-    price = formatDollar(pf)
+    data["rows"] = []
+    price = None
 
-    data["rows"] = [
-        {
+    for _ in range(limit):
+        pf = getBase(symbol) * (1 + (random.random()-0.5)/25)
+        setBase(symbol, pf)
+        price = formatDollar(pf)
+        data["rows"].append({
             "nlsTime":time.strftime("%H:%M:%S"),
             "nlsPrice":"$ "+price,
             "nlsShareVolume": str(random.randint(10, 10000))
-        } for _ in range(limit)
-    ]
+            })
 
     data["topTable"] = {
         "headers":{

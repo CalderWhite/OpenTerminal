@@ -51,7 +51,7 @@ namespace OpenTerminal
          * This runs on a timer set in the constructor so that 
          * the mutated graph data is updated.
          */
-        private void TextChanged(object sender, TextChangedEventArgs e)
+        public void TextChanged(object sender, TextChangedEventArgs e)
         {
             // if it is an exact match we are just being notified of the Text being set on the window initialization
             // which we want to keep so the user can see the placeholder text.
@@ -93,7 +93,16 @@ namespace OpenTerminal
 
             if (!double.IsInfinity(caretLocation.X))
             {
-                Canvas.SetLeft(Caret, caretLocation.X);
+                if (CustomTextBox.CaretIndex == 0)
+                {
+                    // if we are at position zero we want to reset the offsets so there is no empty space
+                    // before the caret
+                    Canvas.SetLeft(Caret, 0);
+                } else
+                {
+                    ScaleTransform fontTransform = (ScaleTransform)Application.Current.Resources["FontStretchExpanded"];
+                    Canvas.SetLeft(Caret, caretLocation.X * fontTransform.ScaleX + 2); ;
+                }
             }
 
             if (!double.IsInfinity(caretLocation.Y))

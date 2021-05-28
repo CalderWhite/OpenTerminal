@@ -6,11 +6,17 @@
         xmlns:local="clr-namespace:OpenTerminal"
         xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1600" Background="Black">
+        Title="MainWindow" Height="580" Width="1170.8" Background="Black"
+        KeyDown="GlobalKeydown">
     <DockPanel>
         <local:CustomCaretTextBox DockPanel.Dock="Top" x:Name="TickerInput" Height="36"/>
-        <CheckBox Margin="0,0,10,0" DockPanel.Dock="Top" x:Name="AutoTrackCheckbox" IsChecked="True" FlowDirection="RightToLeft" Content="Auto Track Graph" FontFamily="Verdana" HorizontalAlignment="Right" VerticalAlignment="Top" Width="126" Click="CheckBox_Changed" Foreground="White" RenderTransformOrigin="-0.397,2.067" Height="18"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Top">
+            <CheckBox Margin="0,0,10,0" x:Name="AutoTrackCheckbox" IsChecked="True" FlowDirection="RightToLeft" Content="Auto Track Graph" FontFamily="Verdana" HorizontalAlignment="Right"  Width="126" Click="CheckBox_Changed" Foreground="White"  Height="18"/>
+            <CheckBox Margin="0,0,10,0" x:Name="TradeTapeCheckbox" IsChecked="True" FlowDirection="RightToLeft" Content="Show Trade Tape" FontFamily="Verdana" HorizontalAlignment="Right"  Width="126" Click="TradeTapeCheckbox_Changed" Foreground="White" Height="18"/>
+        </StackPanel>
+        <local:TradeTapeView DockPanel.Dock="Right" x:Name="TradeTape" Margin="0,0.4" Width="350" />
         <ScottPlot:WpfPlot DockPanel.Dock="Top" Name="wpfPlot1"/>
+        
 
     </DockPanel>
 </Window>

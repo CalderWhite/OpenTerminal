@@ -6,26 +6,36 @@ using System.Threading.Tasks;
 
 namespace OpenTerminal
 {
-    class Trade
+    public class Trade
     {
-        public double Shares;
-        public double Price;
-        public DateTime Time;
+        public double Volume { get; set; }
+        public double Price { get; set; }
+        public DateTime Time { get; set; }
+
+        // internal. Not to be sent outside of this application
+        // -1: lower
+        //  0: same
+        //  1: higher
+        public int HigherThanLast { get; set; }
+
         public Trade(string price, string shares, string time)
         {
-            this.Shares = double.Parse(shares);
+            this.Volume = double.Parse(shares);
             this.Price = double.Parse(price.Substring(1));
             this.Time = DateTime.Parse(time);
+            this.HigherThanLast = 0;
         }
 
         public bool Equals(Trade t)
         {
-            return this.Shares.Equals(t.Shares) && this.Price.Equals(t.Price) && this.Time.Equals(t.Time);
+            return this.Volume.Equals(t.Volume) && this.Price.Equals(t.Price) && this.Time.Equals(t.Time);
         }
 
         public override string ToString()
         {
-            return String.Format("${0:N3}\t{1,5}\t{2}", this.Price, this.Shares, this.Time.ToString());
+            return String.Format("${0:N3}\t{1,5}\t{2}", this.Price, this.Volume, this.Time.ToString());
         }
+
+
     }
 }
