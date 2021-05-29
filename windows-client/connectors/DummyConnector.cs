@@ -35,10 +35,8 @@ namespace OpenTerminal
                 {
                     double diff = trades[i].Price - trades[i - 1].Price;
                     int tradeSignal = 0;
-                    Console.WriteLine(diff);
                     if (diff < 0)
                     {
-                        Console.WriteLine("Yes");
                         tradeSignal = -1;
                     }  else if (diff > 0)
                     {
