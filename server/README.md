@@ -13,12 +13,12 @@ Type "help" to see them.
 The server listens for a `push-trades` SocketIO event. The data for this event should follow this format:
 ```json
 {
-  'ticker' : "AAPL",
-  'trades' : [
+  "ticker" : "AAPL",
+  "trades" : [
     {
-      'price' : 127.36,
-      'volume' : 100,
-      'date' : '28/05/2021 02:23:45 AM -05:00'
+      "price" : 127.36,
+      "volume" : 100,
+      "date" : "28/05/2021 02:23:45 AM -05:00"
     },
     ...
   ]
