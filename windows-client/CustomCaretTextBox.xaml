@@ -20,13 +20,15 @@
                  TextChanged="TextChanged"
                  KeyDown="OnKeyDownHandler"
                 Padding="0"
-                Margin="0"/>
+                Margin="0"
+                LayoutTransform="{StaticResource FontStretchExpanded}"
+                 />
         <Canvas>
             <Border x:Name="Caret" 
                 Visibility="Collapsed"
                 Canvas.Left="0" 
                 Canvas.Top="0" 
-                Width="14" 
+                Width="16" 
                 Height="26" 
                 Background="Black">
                 <Border.Triggers>

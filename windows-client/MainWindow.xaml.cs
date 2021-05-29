@@ -92,6 +92,10 @@ namespace OpenTerminal
                 return;
             }
             List<Trade> newTrades = exchangeConnector.GetLatestTrades();
+
+            // before deduping the trades we will update the contents of the tape
+            TradeTape.UpdateTape(newTrades);
+            // now dedupe the trades so we don't regraph old trades
             exchangeConnector.DedupeTrades(newTrades);
 
             if (newTrades.Count > 0)
@@ -214,6 +218,27 @@ namespace OpenTerminal
         {
             MainWindow w = new MainWindow();
             w.Show();
+        }
+
+        private void TradeTapeCheckbox_Changed(object sender, RoutedEventArgs e)
+        {
+            if (TradeTape == null)
+            {
+                return;
+            }
+
+            if (TradeTape.Visibility == Visibility.Visible)
+            {
+                TradeTape.Visibility = Visibility.Collapsed;
+            } else
+            {
+                TradeTape.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void GlobalKeydown(object sender, RoutedEventArgs e)
+        {
+            TickerInput.Focus();
         }
     }
 }

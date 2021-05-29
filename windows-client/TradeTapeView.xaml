@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="OpenTerminal.TradeTapeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OpenTerminal"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="300"
+             Background="Black">
+    <DockPanel>
+        <DataGrid DockPanel.Dock="Bottom" Name="TradeTapeDataGrid" VerticalScrollBarVisibility="Hidden" RowHeaderWidth="0" BorderThickness="0" IsReadOnly="True" AutoGenerateColumns="False" FontFamily="Verdana" FontSize="16" Background="Black" Foreground="White" BorderBrush="White" VerticalGridLinesBrush="White" HorizontalGridLinesBrush="White" GridLinesVisibility="None" >
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="LayoutTransform" Value="{StaticResource FontStretchExpanded}" />
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Background" Value="Black" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding HigherThanLast}" Value="0">
+                            <Setter Property="Background" Value="Black"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding HigherThanLast}" Value="-1">
+                            <Setter Property="Background" Value="#FFFF4C4C"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding HigherThanLast}" Value="1">
+                            <Setter Property="Background" Value="#FF5ED05E"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="Black" />
+                    <Setter Property="BorderBrush" Value="White" />
+                    <Setter Property="Padding" Value="5" />
+                    <Setter Property="LayoutTransform" Value="{StaticResource FontStretchExpanded}" />
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=${0:0.00}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Padding" Value="5" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Volume" Binding="{Binding Volume}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Padding" Value="5" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Time" Binding="{Binding Time, StringFormat={}{0:hh:mm:ss tt}}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Padding" Value="5" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

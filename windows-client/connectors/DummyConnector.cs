@@ -16,7 +16,7 @@ namespace OpenTerminal
 
         public override List<Trade> GetLatestTrades()
         {
-            string url = String.Format("http://127.0.0.1:5000/api/quote/{0}/realtime-trades?limit=100", this.ticker);
+            string url = String.Format("http://127.0.0.1:5000/api/quote/{0}/realtime-trades?limit=25", this.ticker);
             var client = new HttpClient();
             var task = Task.Run(() => client.GetStringAsync(url));
             task.Wait();
@@ -30,6 +30,22 @@ namespace OpenTerminal
             {
                 var row = json.data.rows[i];
                 trades.Add(new Trade(row.nlsPrice, row.nlsShareVolume, row.nlsTime));
+
+                if (i > 1)
+                {
+                    double diff = trades[i].Price - trades[i - 1].Price;
+                    int tradeSignal = 0;
+                    Console.WriteLine(diff);
+                    if (diff < 0)
+                    {
+                        Console.WriteLine("Yes");
+                        tradeSignal = -1;
+                    }  else if (diff > 0)
+                    {
+                        tradeSignal = 1;
+                    }
+                    trades[i].HigherThanLast = tradeSignal;
+                }
             }
 
             return trades;

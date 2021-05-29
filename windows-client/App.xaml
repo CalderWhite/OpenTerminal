@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:OpenTerminal"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ScaleTransform x:Key="FontStretchCondensed" ScaleX="0.8" />
+        <ScaleTransform x:Key="FontStretchExpanded" ScaleX="1.2" />
     </Application.Resources>
 </Application>
