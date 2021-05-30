@@ -16,7 +16,7 @@ public class Server {
 
         // SocketIO config
         Configuration config = new Configuration();
-        config.setHostname("localhost");
+        config.setHostname("0.0.0.0");
         config.setPort(4201);
 
         // Create the SocketIO server.
